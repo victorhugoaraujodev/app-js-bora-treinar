@@ -24,3 +24,12 @@ test("mobile controls replace rigid minimum widths", async () => {
   assert.match(responsive, /\.set-editor-row[\s\S]*?grid-template-columns:\s*40px\s+repeat\(3,\s*minmax\(0,\s*1fr\)\)\s+32px/);
   assert.match(responsive, /\.modal-card[\s\S]*?width:\s*100%/);
 });
+
+test("mobile exercise actions remain available for editing", async () => {
+  const responsive = await css("responsive.css");
+
+  assert.doesNotMatch(
+    responsive,
+    /\.exercise-actions \.btn-quiet\s*\{\s*display:\s*none/,
+  );
+});
