@@ -39,7 +39,7 @@ test('uses the manifest and relative asset references in index.html', () => {
   assert.match(indexHtml, /href=["']\.\/manifest\.webmanifest["']/);
   assert.doesNotMatch(
     indexHtml,
-    /(?:href|src)=["']\/(?:css|js|icons|manifest)(?:[./"'])/i,
+    /(?:href|src)\s*=\s*["']\/(?:css|js|icons|manifest)(?:[./"'])/i,
   );
 });
 
