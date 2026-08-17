@@ -104,7 +104,7 @@ test('registers the service worker and preserves the storage key', () => {
 test('defines a versioned cache and cleans up old PWA caches', () => {
   const serviceWorker = read('service-worker.js');
 
-  assert.match(serviceWorker, /bora-treinar-v2/);
+  assert.match(serviceWorker, /bora-treinar-v3/);
   assert.match(serviceWorker, /mode\s*===\s*['"]navigate['"]/);
   assert.match(serviceWorker, /['"]\.\/index\.html['"]/);
   assert.match(serviceWorker, /\.startsWith\(['"]bora-treinar-['"]\)/);

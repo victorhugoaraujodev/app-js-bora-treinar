@@ -139,6 +139,14 @@
     flex: 1;
   }
 
+  /* iOS zooms focused controls whose text is smaller than 16px. */
+  .form-field input,
+  .form-field select,
+  .form-field textarea,
+  .set-editor-row input {
+    font-size: 16px;
+  }
+
   .profile-chip {
     width: 30px;
     height: 30px;
@@ -313,11 +321,18 @@
   }
 
   .set-editor-row {
+    width: 100%;
     grid-template-columns: 40px repeat(3, minmax(0, 1fr)) 32px;
+    min-width: 0;
+  }
+
+  .set-editor-row input {
+    width: 100%;
+    min-width: 0;
   }
 
   .set-editor-row .set-remove-button {
-    grid-column: 4;
+    grid-column: 5;
     justify-self: end;
   }
 
@@ -333,6 +348,7 @@
 
   .modal-card {
     width: 100%;
+    overflow-x: hidden;
   }
 
   .modal-header,

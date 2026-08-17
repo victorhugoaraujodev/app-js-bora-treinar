@@ -33,3 +33,13 @@ test("mobile exercise actions remain available for editing", async () => {
     /\.exercise-actions \.btn-quiet\s*\{\s*display:\s*none/,
   );
 });
+
+test("mobile exercise modal prevents iOS input zoom and row overflow", async () => {
+  const responsive = await css("responsive.css");
+
+  assert.match(
+    responsive,
+    /\.form-field input,\s*\n\s*\.form-field select,\s*\n\s*\.form-field textarea,\s*\n\s*\.set-editor-row input[\s\S]*?font-size:\s*16px/,
+  );
+  assert.match(responsive, /\.set-editor-row[\s\S]*?width:\s*100%[\s\S]*?min-width:\s*0/);
+});
