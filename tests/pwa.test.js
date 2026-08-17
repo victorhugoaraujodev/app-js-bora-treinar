@@ -18,16 +18,19 @@ test('defines the expected PWA manifest contract', () => {
     {
       src: './icons/icon-192.png',
       sizes: '192x192',
+      type: 'image/png',
       purpose: 'any',
     },
     {
       src: './icons/icon-512.png',
       sizes: '512x512',
+      type: 'image/png',
       purpose: 'any',
     },
     {
       src: './icons/icon-maskable-512.png',
       sizes: '512x512',
+      type: 'image/png',
       purpose: 'maskable',
     },
   ]);
@@ -79,5 +82,5 @@ test('defines a versioned cache and cleans up old PWA caches', () => {
   assert.match(serviceWorker, /bora-treinar-v\d+/);
   assert.match(serviceWorker, /mode\s*===\s*['"]navigate['"]/);
   assert.match(serviceWorker, /['"]\.\/index\.html['"]/);
-  assert.match(serviceWorker, /\.startsWith\(['"]bora-treinar-v['"]\)/);
+  assert.match(serviceWorker, /\.startsWith\(['"]bora-treinar-['"]\)/);
 });
