@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 
-import { createSeedState } from '../js/data.js';
+import { createEmptyState, createSeedState } from '../js/data.js';
 import { createStorage, STORAGE_KEY } from '../js/storage.js';
 
 function createMemoryStorage() {
@@ -31,7 +31,21 @@ test('saves and loads the application state from the configured key', () => {
   assert.deepEqual(storage.load(), state);
 });
 
-test('returns a fresh seed state when stored JSON is malformed', () => {
+test('returns an empty state when there is no stored data', () => {
+  const memoryStorage = createMemoryStorage();
+  const storage = createStorage(memoryStorage);
+
+  const state = storage.load();
+
+  const emptyState = createEmptyState();
+  assert.equal(state.version, emptyState.version);
+  assert.deepEqual(state.profile.name, emptyState.profile.name);
+  assert.deepEqual(state.settings, emptyState.settings);
+  assert.equal(state.workouts.length, 0);
+  assert.equal(state.sessions.length, 0);
+});
+
+test('returns a fresh empty state when stored JSON is malformed', () => {
   const memoryStorage = createMemoryStorage();
   memoryStorage.setItem(STORAGE_KEY, '{malformed');
   const storage = createStorage(memoryStorage);
@@ -40,5 +54,6 @@ test('returns a fresh seed state when stored JSON is malformed', () => {
 
   assert.equal(state.version, 1);
   assert.ok(Array.isArray(state.workouts));
+  assert.equal(state.workouts.length, 0);
   assert.notEqual(state, createSeedState());
 });

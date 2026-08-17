@@ -1,7 +1,7 @@
-import { createSeedState } from './data.js';
+import { createEmptyState, createSeedState } from './data.js';
 
 export function createStore({ storage } = {}) {
-  let state = storage?.load?.() ?? createSeedState();
+  let state = storage?.load?.() ?? createEmptyState();
   const listeners = new Set();
 
   function notify() {
@@ -28,8 +28,8 @@ export function createStore({ storage } = {}) {
       return () => listeners.delete(listener);
     },
 
-    reset() {
-      state = createSeedState();
+    reset(nextState = createSeedState()) {
+      state = nextState;
       storage?.save?.(state);
       notify();
       return state;

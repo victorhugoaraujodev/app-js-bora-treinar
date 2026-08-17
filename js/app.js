@@ -1,4 +1,4 @@
-import { createId } from './data.js';
+import { createEmptyState, createId } from './data.js';
 import {
   createSession,
   finishSession,
@@ -1388,7 +1388,7 @@ function handleClick(event) {
   if (action === 'reset-data') {
     if (window.confirm('Apagar todos os dados locais? Essa ação não pode ser desfeita.')) {
       storage.clear();
-      store.reset();
+      store.reset(createEmptyState());
       showToast('Dados locais apagados.');
     }
     return;

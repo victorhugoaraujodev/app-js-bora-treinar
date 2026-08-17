@@ -15,7 +15,7 @@ Tornar o MVP local-first mais resistente a dados inválidos, importações malfo
 
 ## Decisões
 
-O estado inválido será rejeitado e substituído por um estado de demonstração. A validação será compartilhada entre `storage.js` e a importação para evitar regras divergentes. Sessões continuarão vinculadas ao dia local atual.
+O estado inválido será rejeitado e substituído por um estado vazio, evitando que novos usuários recebam dados de demonstração automaticamente. A validação será compartilhada entre `storage.js` e a importação para evitar regras divergentes. Os dados de demonstração continuarão disponíveis apenas pela ação explícita de restauração. Sessões continuarão vinculadas ao dia local atual.
 
 ## Testes
 

@@ -135,3 +135,23 @@ export function createSeedState() {
     },
   };
 }
+
+export function createEmptyState() {
+  const now = new Date().toISOString();
+
+  return {
+    version: 1,
+    profile: {
+      id: 'profile-local',
+      name: '',
+      created_at: now,
+      updated_at: now,
+    },
+    workouts: [],
+    sessions: [],
+    settings: {
+      first_day_of_week: 0,
+      default_rest_seconds: DEFAULT_REST_SECONDS,
+    },
+  };
+}

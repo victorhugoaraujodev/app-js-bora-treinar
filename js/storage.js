@@ -1,4 +1,4 @@
-import { createSeedState } from './data.js';
+import { createEmptyState } from './data.js';
 
 export const STORAGE_KEY = 'bora_treinar_state_v1';
 
@@ -87,13 +87,13 @@ export function createStorage(storageLike = globalThis.localStorage) {
       try {
         const raw = storageLike?.getItem(STORAGE_KEY);
         if (!raw) {
-          return createSeedState();
+          return createEmptyState();
         }
 
         const parsed = JSON.parse(raw);
-        return validateState(parsed) ? parsed : createSeedState();
+        return validateState(parsed) ? parsed : createEmptyState();
       } catch (error) {
-        return createSeedState();
+        return createEmptyState();
       }
     },
 
