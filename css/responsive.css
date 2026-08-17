@@ -27,6 +27,24 @@
     min-height: calc(var(--topbar-height) + env(safe-area-inset-top));
   }
 
+  .brand,
+  .topbar-actions,
+  .topbar-search,
+  .topbar-search input,
+  .main-content,
+  .content-container,
+  .page-header,
+  .page-title-group,
+  .page-actions,
+  .dashboard-grid,
+  .settings-grid,
+  .workout-list-card,
+  .exercise-list,
+  .modal-card {
+    min-width: 0;
+    max-width: 100%;
+  }
+
   .icon-button.topbar-menu-button {
     display: grid;
   }
@@ -41,6 +59,7 @@
   }
 
   .topbar-search {
+    flex: 1 1 auto;
     max-width: none;
   }
 
@@ -91,7 +110,14 @@
   }
 
   .page-actions {
+    width: 100%;
     justify-content: flex-start;
+  }
+
+  .page-actions .btn,
+  .workout-header-actions .btn,
+  .form-actions .btn {
+    max-width: 100%;
   }
 
   .exercise-progress {
@@ -195,6 +221,25 @@
     padding: 10px 12px;
   }
 
+  .exercise-row-header,
+  .exercise-detail,
+  .set-row,
+  .set-list-header,
+  .set-editor-row,
+  .history-row {
+    min-width: 0;
+    max-width: 100%;
+  }
+
+  .exercise-row-copy,
+  .exercise-name,
+  .exercise-meta,
+  .set-summary,
+  .set-summary-meta,
+  .history-row-main {
+    min-width: 0;
+  }
+
   .exercise-toggle,
   .exercise-checkbox {
     margin-top: 2px;
@@ -258,6 +303,7 @@
 
   .workout-switcher select {
     width: 100%;
+    min-width: 0;
   }
 
   .form-grid {
@@ -269,7 +315,7 @@
   }
 
   .set-editor-row {
-    grid-template-columns: 45px repeat(3, minmax(0, 1fr));
+    grid-template-columns: 40px repeat(3, minmax(0, 1fr)) 32px;
   }
 
   .set-editor-row .set-remove-button {
@@ -281,6 +327,26 @@
     align-items: flex-start;
     flex-direction: column;
     gap: 10px;
+  }
+
+  .modal-backdrop {
+    padding: 10px;
+  }
+
+  .modal-card {
+    width: 100%;
+  }
+
+  .modal-header,
+  .modal-body {
+    padding-right: 14px;
+    padding-left: 14px;
+  }
+
+  .toast-root {
+    right: 12px;
+    bottom: calc(12px + env(safe-area-inset-bottom));
+    width: calc(100vw - 24px);
   }
 }
 
