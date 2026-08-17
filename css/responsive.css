@@ -256,10 +256,8 @@
 
   .exercise-actions {
     align-self: center;
-  }
-
-  .exercise-actions .btn-quiet {
-    display: none;
+    flex-wrap: wrap;
+    justify-content: flex-end;
   }
 
   .exercise-detail {

@@ -1,4 +1,4 @@
-const CACHE_NAME = 'bora-treinar-v1';
+const CACHE_NAME = 'bora-treinar-v2';
 const APP_SHELL = [
   './', './index.html', './manifest.webmanifest',
   './css/variables.css', './css/reset.css', './css/layout.css',
