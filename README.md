@@ -32,7 +32,7 @@ Também é possível usar qualquer servidor estático equivalente. Não existe e
 
 BORA TREINAR pode ser instalado no iPhone, Android e desktop. Após o primeiro acesso online, funciona offline e continua usando a chave `bora_treinar_state_v1` do `localStorage`.
 
-Para testar localmente, execute `python -m http.server 8000` e abra `http://localhost:8000`. Service Workers exigem HTTP/HTTPS, portanto não funcionam com `file://`.
+Para testar localmente, execute `python -m http.server 8000` e abra `http://localhost:8000`. Service Workers require HTTPS, except for HTTP on localhost during local development, and do not work with `file://`.
 
 No iPhone, abra no Safari e siga **Compartilhar** → **Adicionar à Tela de Início** → **Adicionar**. No Android, abra em um navegador compatível e use a opção de instalar ou adicionar à tela inicial.
 

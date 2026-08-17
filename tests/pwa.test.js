@@ -1,12 +1,12 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import fs from 'node:fs';
+import { existsSync, readFileSync } from 'node:fs';
 import path from 'node:path';
 import { resolve } from 'node:path';
 
 const root = resolve(import.meta.dirname, '..');
 
-const read = (relativePath) => fs.readFileSync(path.join(root, relativePath), 'utf8');
+const read = (relativePath) => readFileSync(path.join(root, relativePath), 'utf8');
 const requiredAppShellPaths = [
   'index.html',
   'manifest.webmanifest',
@@ -24,6 +24,17 @@ const requiredAppShellPaths = [
   'icons/icon-192.png',
   'icons/icon-512.png',
   'icons/icon-maskable-512.png',
+  'icons/apple-touch-icon.png',
+  'icons/favicon-32.png',
+  'icons/favicon-16.png',
+];
+const expectedPngDimensions = [
+  ['icons/icon-192.png', 192],
+  ['icons/icon-512.png', 512],
+  ['icons/icon-maskable-512.png', 512],
+  ['icons/apple-touch-icon.png', 180],
+  ['icons/favicon-32.png', 32],
+  ['icons/favicon-16.png', 16],
 ];
 
 test('defines the expected PWA manifest contract', () => {
@@ -64,9 +75,16 @@ test('uses the manifest and relative asset references in index.html', () => {
   );
 });
 
-test('includes every app-shell file and primary PWA icon', () => {
+test('includes every app-shell file and all generated PWA icons at expected sizes', () => {
   for (const relativePath of requiredAppShellPaths) {
-    assert.equal(fs.existsSync(path.join(root, relativePath)), true, relativePath);
+    assert.equal(existsSync(path.join(root, relativePath)), true, relativePath);
+  }
+
+  for (const [relativePath, expectedSize] of expectedPngDimensions) {
+    const png = readFileSync(path.join(root, relativePath));
+    assert.equal(png.toString('ascii', 1, 4), 'PNG', relativePath);
+    assert.equal(png.readUInt32BE(16), expectedSize, `${relativePath} width`);
+    assert.equal(png.readUInt32BE(20), expectedSize, `${relativePath} height`);
   }
 });
 
