@@ -1539,3 +1539,11 @@ globalSearch.addEventListener('input', (event) => {
 
 store.subscribe(renderAll);
 renderAll();
+
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('./service-worker.js').catch(() => {
+      // A aplicação continua funcionando normalmente sem Service Worker.
+    });
+  });
+}
