@@ -28,6 +28,18 @@ http://localhost:8000
 
 Também é possível usar qualquer servidor estático equivalente. Não existe etapa de build.
 
+## PWA
+
+BORA TREINAR pode ser instalado no iPhone, Android e desktop. Após o primeiro acesso online, funciona offline e continua usando a chave `bora_treinar_state_v1` do `localStorage`.
+
+Para testar localmente, execute `python -m http.server 8000` e abra `http://localhost:8000`. Service Workers exigem HTTP/HTTPS, portanto não funcionam com `file://`.
+
+No iPhone, abra no Safari e siga **Compartilhar** → **Adicionar à Tela de Início** → **Adicionar**. No Android, abra em um navegador compatível e use a opção de instalar ou adicionar à tela inicial.
+
+Para publicar no GitHub Pages, use o repositório `victorhugoaraujodev/app-js-bora-treinar` e preserve os caminhos relativos. A URL esperada é `https://victorhugoaraujodev.github.io/app-js-bora-treinar/`.
+
+Para publicar uma nova versão do cache da aplicação, incremente `CACHE_NAME` em `service-worker.js` (por exemplo, de `bora-treinar-v1` para `bora-treinar-v2`). Os caches antigos do BORA TREINAR são removidos na ativação e o `localStorage` é preservado.
+
 ## Fluxo principal
 
 1. Abra **Treino do dia**.

@@ -23,6 +23,8 @@
   .topbar {
     gap: 10px;
     padding: 0 12px;
+    padding-top: env(safe-area-inset-top);
+    min-height: calc(var(--topbar-height) + env(safe-area-inset-top));
   }
 
   .icon-button.topbar-menu-button {
@@ -74,6 +76,7 @@
     width: 100%;
     margin-left: 0;
     padding: 24px 17px 42px;
+    padding-bottom: calc(42px + env(safe-area-inset-bottom));
   }
 
   .page-header {
