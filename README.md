@@ -36,7 +36,12 @@ Para testar localmente, execute `python -m http.server 8000` e abra `http://loca
 
 No iPhone, abra no Safari e siga **Compartilhar** → **Adicionar à Tela de Início** → **Adicionar**. No Android, abra em um navegador compatível e use a opção de instalar ou adicionar à tela inicial.
 
-Para publicar no GitHub Pages, use o repositório `victorhugoaraujodev/app-js-bora-treinar` e preserve os caminhos relativos. A URL esperada é `https://victorhugoaraujodev.github.io/app-js-bora-treinar/`.
+Para publicar no GitHub Pages:
+
+1. Envie os arquivos para o branch que será publicado (por exemplo, `main`).
+2. No GitHub, abra **Settings** → **Pages** e, em **Build and deployment**, selecione **Deploy from a branch**.
+3. Escolha o branch do repositório (por exemplo, `main`) e a pasta `/(root)`, depois salve.
+4. Preserve os caminhos relativos (`./`) dos arquivos: a aplicação é publicada no subcaminho do repositório, em `https://victorhugoaraujodev.github.io/app-js-bora-treinar/`.
 
 Para publicar uma nova versão do cache da aplicação, incremente `CACHE_NAME` em `service-worker.js` (por exemplo, de `bora-treinar-v1` para `bora-treinar-v2`). Os caches antigos do BORA TREINAR são removidos na ativação e o `localStorage` é preservado.
 
@@ -67,7 +72,13 @@ Arquivos importados são validados antes de substituir o estado atual. A aplica�
 
 ## Testes
 
-O ambiente bloqueia instalação de pacotes externos, portanto o projeto utiliza apenas o runner nativo do Node:
+O ambiente bloqueia instalação de pacotes externos, portanto o projeto utiliza apenas o runner nativo do Node. Execute pelos scripts do projeto:
+
+```bash
+npm test
+```
+
+Ou execute o runner diretamente:
 
 ```bash
 node --test

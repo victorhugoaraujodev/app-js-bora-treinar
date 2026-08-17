@@ -7,6 +7,24 @@ import { resolve } from 'node:path';
 const root = resolve(import.meta.dirname, '..');
 
 const read = (relativePath) => fs.readFileSync(path.join(root, relativePath), 'utf8');
+const requiredAppShellPaths = [
+  'index.html',
+  'manifest.webmanifest',
+  'css/components.css',
+  'css/layout.css',
+  'css/reset.css',
+  'css/responsive.css',
+  'css/variables.css',
+  'js/app.js',
+  'js/data.js',
+  'js/domain.js',
+  'js/state.js',
+  'js/storage.js',
+  'js/ui.js',
+  'icons/icon-192.png',
+  'icons/icon-512.png',
+  'icons/icon-maskable-512.png',
+];
 
 test('defines the expected PWA manifest contract', () => {
   const manifest = JSON.parse(read('manifest.webmanifest'));
@@ -47,27 +65,16 @@ test('uses the manifest and relative asset references in index.html', () => {
 });
 
 test('includes every app-shell file and primary PWA icon', () => {
-  const appShellPaths = [
-    'index.html',
-    'manifest.webmanifest',
-    'css/components.css',
-    'css/layout.css',
-    'css/reset.css',
-    'css/responsive.css',
-    'css/variables.css',
-    'js/app.js',
-    'js/data.js',
-    'js/domain.js',
-    'js/state.js',
-    'js/storage.js',
-    'js/ui.js',
-    'icons/icon-192.png',
-    'icons/icon-512.png',
-    'icons/icon-maskable-512.png',
-  ];
-
-  for (const relativePath of appShellPaths) {
+  for (const relativePath of requiredAppShellPaths) {
     assert.equal(fs.existsSync(path.join(root, relativePath)), true, relativePath);
+  }
+});
+
+test('pre-caches every required app-shell path', () => {
+  const serviceWorker = read('service-worker.js');
+
+  for (const relativePath of requiredAppShellPaths) {
+    assert.match(serviceWorker, new RegExp(`['\"]\\./${relativePath.replaceAll('.', '\\.')}['\"]`));
   }
 });
 
