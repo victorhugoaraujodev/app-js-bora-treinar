@@ -1,4 +1,5 @@
 .app-shell {
+  min-width: 0;
   min-height: 100vh;
 }
 
@@ -11,6 +12,7 @@
   display: flex;
   align-items: center;
   gap: 16px;
+  min-width: 0;
   height: var(--topbar-height);
   padding: 0 18px;
   color: #fff;
@@ -61,7 +63,9 @@
 .topbar-search {
   position: relative;
   display: flex;
+  flex: 1 1 520px;
   align-items: center;
+  min-width: 0;
   width: min(100%, 520px);
   height: 34px;
   margin-left: auto;
@@ -153,6 +157,7 @@
 
 .workspace {
   display: flex;
+  min-width: 0;
   min-height: 100vh;
   padding-top: var(--topbar-height);
 }
@@ -331,6 +336,7 @@
 
 .main-content {
   width: calc(100% - var(--sidebar-width));
+  min-width: 0;
   min-height: calc(100vh - var(--topbar-height));
   margin-left: var(--sidebar-width);
   padding: 38px clamp(22px, 4vw, 62px) 64px;

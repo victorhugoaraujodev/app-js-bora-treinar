@@ -36,7 +36,7 @@
 - Consumes: CSS source files from `css/`.
 - Produces: deterministic Node tests that fail before the CSS contract is added and pass after implementation.
 
-- [ ] **Step 1: Write the failing tests**
+- [x] **Step 1: Write the failing tests**
 
 Create a Node test file that reads the CSS files and checks the required mobile contract:
 
@@ -65,7 +65,7 @@ test("mobile controls replace rigid minimum widths", async () => {
 });
 ```
 
-- [ ] **Step 2: Run the new test and verify it fails**
+- [x] **Step 2: Run the new test and verify it fails**
 
 Run:
 
@@ -85,7 +85,7 @@ Expected: the existing suite runs, and the new responsive assertions fail becaus
 - Consumes: existing app shell, topbar, workspace, sidebar, and main-content classes.
 - Produces: containers that can shrink to the viewport without changing their visual desktop structure.
 
-- [ ] **Step 1: Add safe intrinsic sizing to the base layout**
+- [x] **Step 1: Add safe intrinsic sizing to the base layout**
 
 In `css/reset.css`, keep the 320px document floor for unsupported smaller screens, but add `min-width: 0` to the app shell and use document-level overflow protection only as a guard. The primary correction remains child sizing.
 
@@ -125,7 +125,7 @@ In `css/layout.css`, update these existing rules:
 
 Ensure `.topbar-actions` and `.brand` retain their desktop sizing, while mobile overrides can set them to shrink or fixed-content sizing.
 
-- [ ] **Step 2: Run the responsive test**
+- [x] **Step 2: Run the responsive test**
 
 Run:
 
@@ -144,7 +144,7 @@ Expected: the first test passes; the mobile component assertions still fail.
 - Consumes: classes rendered by `index.html` and `js/app.js`.
 - Produces: mobile-only layout behavior for all components named in the approved spec.
 
-- [ ] **Step 1: Add mobile sizing and stacking rules**
+- [x] **Step 1: Add mobile sizing and stacking rules**
 
 Within the existing `@media (max-width: 820px)` block, add or update rules so the mobile header and main content can shrink:
 
@@ -247,7 +247,7 @@ Within the existing `@media (max-width: 600px)` block, add rules for rigid contr
 
 If the exercise action group or set action labels still exceed 360px during viewport inspection, keep their existing semantic controls but allow the action group to wrap and allow button text to wrap rather than forcing a horizontal row.
 
-- [ ] **Step 2: Run the responsive regression test**
+- [x] **Step 2: Run the responsive regression test**
 
 Run:
 
@@ -266,7 +266,7 @@ Expected: all responsive assertions pass.
 - Consumes: completed CSS changes and the existing app routes.
 - Produces: evidence that the document and main content do not exceed the viewport at 360px, 375px, 390px, and 430px.
 
-- [ ] **Step 1: Run the complete automated test suite**
+- [x] **Step 1: Run the complete automated test suite**
 
 Run:
 
@@ -276,7 +276,7 @@ npm test
 
 Expected: all tests pass with zero failures.
 
-- [ ] **Step 2: Start the static app for browser inspection**
+- [x] **Step 2: Start the static app for browser inspection**
 
 Run a local static server from the repository root using an available local server command, then inspect these routes at 360px, 375px, 390px, and 430px:
 
@@ -292,7 +292,7 @@ Check the home screen, workout list, workout detail, settings, new-workout modal
 
 Expected: `document` and `main` scroll widths do not exceed the viewport width, except for browser rounding of at most 1px.
 
-- [ ] **Step 3: Review the final diff and working tree**
+- [x] **Step 3: Review the final diff and working tree**
 
 Run:
 
@@ -303,7 +303,7 @@ git status --short
 
 Expected: no whitespace errors and only the intended CSS/test files are modified.
 
-- [ ] **Step 4: Commit the implementation**
+- [x] **Step 4: Commit the implementation**
 
 ```text
 git add css/reset.css css/layout.css css/responsive.css tests/responsive.test.js
